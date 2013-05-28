@@ -38,7 +38,6 @@ namespace graphics
                      utility::make_vector<std::string>()("position")("texcoord")
                      )
         {
-            
             std::vector<float> vertecies;
             std::vector<float> texcoords;
             for( int theta = 0; theta < 180; theta+=this->step )
@@ -75,7 +74,7 @@ namespace graphics
             glVertexAttribPointer( worldProgram.attributes["position"], 3, GL_FLOAT, 0, 0, *this/*interploate(FlatSphere, Sphere, ratio, buffer, bufferSize)*/ );
             glEnableVertexAttribArray( worldProgram.attributes["position"] );
             glVertexAttribPointer( worldProgram.attributes["texcoord"], 2, GL_FLOAT, true, 0, this->texcoord() );
-            glEnableVertexAttribArray(worldProgram.attributes["texcoord"]);
+            glEnableVertexAttribArray( worldProgram.attributes["texcoord"]);
             
             glDrawArrays(GL_POINTS, 0, this->numberOfVertecies() );
         }
@@ -595,7 +594,7 @@ namespace graphics
     public:
         slides(std::vector<std::string> textures ):
         slideBoxTexture("slideBox.png"),
-        slideBoxProgram("slide)box.vsh","slide_box.fsh",
+        slideBoxProgram("slide_box.vsh","slide_box.fsh",
                         utility::make_vector<std::string>()("projection")("texture"),
                         utility::make_vector<std::string>()("position")("texcoord"))
         {
@@ -613,16 +612,16 @@ namespace graphics
             GLuint vertexCount = 100;
             GLfloat cubeStructure[] =
             {
-                0.50 * width, -0.50 * height, 0.50 * length, -0.00, 0.00,
-                0.50 * width, -0.50 * height,-0.50 * length,  0.33, 0.00,
+                 0.50 * width, -0.50 * height, 0.50 * length, -0.00, 0.00,
+                 0.50 * width, -0.50 * height,-0.50 * length,  0.33, 0.00,
                 -0.50 * width, -0.50 * height,-0.50 * length,  0.33, 0.33,
                 -0.50 * width, -0.50 * height, 0.50 * length, -0.00, 0.33,
-                0.50 * width,  0.50 * height, 0.50 * length,  0.67, 0.33,
-                0.50 * width, -0.50 * height, 0.50 * length,  0.33, 0.33,
+                 0.50 * width,  0.50 * height, 0.50 * length,  0.67, 0.33,
+                 0.50 * width, -0.50 * height, 0.50 * length,  0.33, 0.33,
                 -0.50 * width, -0.50 * height, 0.50 * length,  0.33, 0.00,
                 -0.50 * width,  0.50 * height, 0.50 * length,  0.67, 0.00,
-                0.50 * width,  0.50 * height,-0.50 * length,  0.67, 0.67,
-                0.50 * width, -0.50 * height,-0.50 * length,  0.33, 0.67,
+                 0.50 * width,  0.50 * height,-0.50 * length,  0.67, 0.67,
+                 0.50 * width, -0.50 * height,-0.50 * length,  0.33, 0.67,
                 -0.50 * width,  0.50 * height,-0.50 * length,  0.67, 1.00,
                 -0.50 * width, -0.50 * height,-0.50 * length,  0.33, 1.00,
                 -0.50 * width,  0.50 * height, 0.50 * length,  0.33, 1.00,
@@ -630,8 +629,8 @@ namespace graphics
                 -0.50 * width, -0.50 * height,-0.50 * length, -0.00, 0.67,
                 -0.50 * width,  0.50 * height,-0.50 * length,  0.33, 0.67,
                 -0.50 * width,  0.50 * height,-0.50 * length, -0.00, 0.67,
-                0.50 * width,  0.50 * height,-0.50 * length, -0.00, 0.33,
-                0.50 * width,  0.50 * height, 0.50 * length,  0.33, 0.33,
+                 0.50 * width,  0.50 * height,-0.50 * length, -0.00, 0.33,
+                 0.50 * width,  0.50 * height, 0.50 * length,  0.33, 0.33,
                 -0.50 * width,  0.50 * height, 0.50 * length,  0.33, 0.67,
             };
             
