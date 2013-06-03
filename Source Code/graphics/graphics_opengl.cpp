@@ -24,9 +24,6 @@
 #include <string>
 #include <iostream>
 
-#define USE_MULTISAMPLING
-#define USE_TRILINEAR
-
 namespace graphics { namespace opengl
 {
     texture::texture(std::string name)

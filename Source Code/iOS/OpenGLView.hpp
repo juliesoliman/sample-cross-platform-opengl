@@ -54,6 +54,7 @@
 }
 
     // setup these parameters before you call 'start'
+@property (nonatomic, assign) bool  multisamplingEnabled;           // enables multisampling
 @property (nonatomic, assign) bool  useTransparentView;             // default is true
 @property (nonatomic, assign) bool  accelerometerEnabled;           // default is false
 @property (nonatomic, assign) float accelerometerFrequency;         // default is 20Hz

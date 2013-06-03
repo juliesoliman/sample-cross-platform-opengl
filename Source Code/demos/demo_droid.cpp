@@ -15,4 +15,3 @@
 //
 
 #include "demo_droid.hpp"
-

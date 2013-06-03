@@ -16,6 +16,9 @@
 
 #include "graphics_utility.hpp"
 
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
 #include <vector>
 #include <map>
 #include <memory>

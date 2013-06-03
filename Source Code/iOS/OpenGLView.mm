@@ -2,7 +2,7 @@
 //  Created by mmalc Crawford on 11/18/10.
 //  Copyright 2010 Apple Inc. All rights reserved.
 //
-//  Modified by Daher Alfawares on 6/14/11.
+//  Modified by Daher Alfawares on 6/14/12.
 //
 //   Copyright 2013 Daher Alfawares
 //
@@ -20,15 +20,9 @@
 //
 
 #import "OpenGLView.hpp"
-
 #import <QuartzCore/QuartzCore.h>
 #import <OpenGLES/ES2/gl.h>
 #import <OpenGLES/ES2/glext.h>
-
-
-// CONSTANTS
-#define USE_ACCEL
-#define k            0.3
 
 @interface  OpenGLView ()
 - (void)createFramebuffer;
@@ -67,6 +61,8 @@
         self.useTransparentView             = true;
         self.accelerometerFrequency         = 20.0; // Hz
         self.accelerometerFilteringFactor   = 0.3;
+        self.multipleTouchEnabled           = true;
+        self.contentScaleFactor             = [UIScreen mainScreen].scale;
     }
     return self;
 }
@@ -74,7 +70,6 @@
 -(void)start
 {
     CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
-    
     
     if( self.useTransparentView )
     {
@@ -230,24 +225,26 @@
         if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
             NSLog(@"Failed to make complete framebuffer object %x", glCheckFramebufferStatus(GL_FRAMEBUFFER));
         
-#ifdef USE_MULTISAMPLING
+
+        if( self.multisamplingEnabled )
+        {
             // multisampling:
-        glGenFramebuffers(1, &sampleFramebuffer);
-        glBindFramebuffer(GL_FRAMEBUFFER, sampleFramebuffer);
-        
-        glGenRenderbuffers(1, &sampleColorRenderbuffer);
-        glBindRenderbuffer(GL_RENDERBUFFER, sampleColorRenderbuffer);
-        glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER, 4, GL_RGBA8_OES, framebufferWidth, framebufferHeight);
-        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, sampleColorRenderbuffer);
-        
-        glGenRenderbuffers(1, &sampleDepthRenderbuffer);
-        glBindRenderbuffer(GL_RENDERBUFFER, sampleDepthRenderbuffer);
-        glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER, 4, GL_DEPTH_COMPONENT16, framebufferWidth, framebufferHeight);
-        glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, sampleDepthRenderbuffer);
-        
-        if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-            NSLog(@"Failed to make complete framebuffer object %x", glCheckFramebufferStatus(GL_FRAMEBUFFER));
-#endif
+            glGenFramebuffers(1, &sampleFramebuffer);
+            glBindFramebuffer(GL_FRAMEBUFFER, sampleFramebuffer);
+            
+            glGenRenderbuffers(1, &sampleColorRenderbuffer);
+            glBindRenderbuffer(GL_RENDERBUFFER, sampleColorRenderbuffer);
+            glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER, 4, GL_RGBA8_OES, framebufferWidth, framebufferHeight);
+            glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_RENDERBUFFER, sampleColorRenderbuffer);
+            
+            glGenRenderbuffers(1, &sampleDepthRenderbuffer);
+            glBindRenderbuffer(GL_RENDERBUFFER, sampleDepthRenderbuffer);
+            glRenderbufferStorageMultisampleAPPLE(GL_RENDERBUFFER, 4, GL_DEPTH_COMPONENT16, framebufferWidth, framebufferHeight);
+            glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, sampleDepthRenderbuffer);
+            
+            if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+                NSLog(@"Failed to make complete framebuffer object %x", glCheckFramebufferStatus(GL_FRAMEBUFFER));
+        }
         
         // Create texture render buffer
 #ifdef USE_TEXTURE_BUFFER
@@ -334,17 +331,17 @@
         bloomEffect.render(textureRenderBuffer);
 #endif
     
+        if( self.multisamplingEnabled )
+        {
+            glBindFramebuffer(GL_DRAW_FRAMEBUFFER_APPLE, defaultFramebuffer);
+            glBindFramebuffer(GL_READ_FRAMEBUFFER_APPLE, sampleFramebuffer);
+            glResolveMultisampleFramebufferAPPLE();
+            
+            const GLenum discards[]  = {GL_COLOR_ATTACHMENT0,GL_DEPTH_ATTACHMENT};
+            glDiscardFramebufferEXT(GL_READ_FRAMEBUFFER_APPLE,2,discards);
+        }
         
-#ifdef USE_MULTISAMPLING
-        glBindFramebuffer(GL_DRAW_FRAMEBUFFER_APPLE, defaultFramebuffer);
-        glBindFramebuffer(GL_READ_FRAMEBUFFER_APPLE, sampleFramebuffer);
-        glResolveMultisampleFramebufferAPPLE();
-        
-        const GLenum discards[]  = {GL_COLOR_ATTACHMENT0,GL_DEPTH_ATTACHMENT};
-        glDiscardFramebufferEXT(GL_READ_FRAMEBUFFER_APPLE,2,discards);
-#endif   
         glBindRenderbuffer(GL_RENDERBUFFER, colorRenderbuffer);
-
         success = [self.context presentRenderbuffer:GL_RENDERBUFFER];
     }
     
@@ -383,6 +380,11 @@
         UIGestureRecognizer *touch = [touchArray objectAtIndex:0];
         CGPoint touchLocation = [touch locationInView:touch.view];
         
+            // refine the touch for retina.
+        touchLocation.x *= self.contentScaleFactor;
+        touchLocation.y *= self.contentScaleFactor;
+        
+            // send the touch in the opengl space to the app.
         openglApp->touch_began( glm::vec2( touchLocation.x, touchLocation.y ), self.globalTime );
     }
 }
@@ -396,7 +398,12 @@
         
         CGPoint touchLocation = [touch locationInView:touch.view];
         
-        openglApp->touch_move( glm::vec2( touchLocation.x, touchLocation.y ), self.globalTime );        
+            // refine the touch for retina.
+        touchLocation.x *= self.contentScaleFactor;
+        touchLocation.y *= self.contentScaleFactor;
+        
+            // send the touch in the opengl space to the app.
+        openglApp->touch_move( glm::vec2( touchLocation.x, touchLocation.y ), self.globalTime );
     }
 }
 
@@ -452,8 +459,8 @@
     self.globalTimeDelta    = self.globalTime - static_cast<float>( CACurrentMediaTime() );
     self.globalTime         = static_cast<float>( CACurrentMediaTime() );
     
-    openglApp->width   = self.bounds.size.width;
-    openglApp->height  = self.bounds.size.height;
+    openglApp->width   = self.bounds.size.width * [UIScreen mainScreen].scale;
+    openglApp->height  = self.bounds.size.height * [UIScreen mainScreen].scale;
     openglApp->render( self.globalTime, self.globalTimeDelta );
     
     [self presentFramebuffer];

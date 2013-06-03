@@ -33,10 +33,6 @@
 
 - (void)loadView
 {
-
-    static int i =0;
-    NSLog(@"%d",i++);
-    
     [super loadView];
     CGRect frame = [[UIScreen mainScreen] bounds];
     

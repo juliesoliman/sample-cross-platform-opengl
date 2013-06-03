@@ -29,8 +29,8 @@
 #include <string>
 #include <iostream>
 
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp" //translate, rotate, scale,
+#include "../graphics/glm/glm.hpp"
+#include "../graphics/glm/gtc/matrix_transform.hpp" //translate, rotate, scale,
 
 namespace demo {
     
@@ -316,8 +316,28 @@ namespace demo {
         portraitSlides.push_back("008-p.png");
         portraitSlides.push_back("009-p.png");
         portraitSlides.push_back("010-p.png");
+        portraitSlides.push_back("001-p.png");
+        portraitSlides.push_back("002-p.png");
+        portraitSlides.push_back("003-p.png");
+        portraitSlides.push_back("004-p.png");
+        portraitSlides.push_back("005-p.png");
+        portraitSlides.push_back("006-p.png");
+        portraitSlides.push_back("007-p.png");
+        portraitSlides.push_back("008-p.png");
+        portraitSlides.push_back("009-p.png");
+        portraitSlides.push_back("010-p.png");
         
         std::vector<std::string> landscapeSlides;
+        landscapeSlides.push_back("001-l.png");
+        landscapeSlides.push_back("002-l.png");
+        landscapeSlides.push_back("003-l.png");
+        landscapeSlides.push_back("004-l.png");
+        landscapeSlides.push_back("005-l.png");
+        landscapeSlides.push_back("006-l.png");
+        landscapeSlides.push_back("007-l.png");
+        landscapeSlides.push_back("008-l.png");
+        landscapeSlides.push_back("009-l.png");
+        landscapeSlides.push_back("010-l.png");
         landscapeSlides.push_back("001-l.png");
         landscapeSlides.push_back("002-l.png");
         landscapeSlides.push_back("003-l.png");
@@ -340,16 +360,30 @@ namespace demo {
         slideLabels.push_back("008-t.png");
         slideLabels.push_back("009-t.png");
         slideLabels.push_back("010-t.png");
+        slideLabels.push_back("001-t.png");
+        slideLabels.push_back("002-t.png");
+        slideLabels.push_back("003-t.png");
+        slideLabels.push_back("004-t.png");
+        slideLabels.push_back("005-t.png");
+        slideLabels.push_back("006-t.png");
+        slideLabels.push_back("007-t.png");
+        slideLabels.push_back("008-t.png");
+        slideLabels.push_back("009-t.png");
+        slideLabels.push_back("010-t.png");
         
         std::vector<int> relationships;
         relationships.push_back(  1 );
         relationships.push_back(  5 );
         relationships.push_back(  1 );
-        relationships.push_back(  2 );
-        relationships.push_back(  5 );
+        relationships.push_back( 12 );
+        relationships.push_back(  3 );
         relationships.push_back(  8 );
         relationships.push_back(  5 );
         relationships.push_back(  6 );
+        relationships.push_back( 11 );
+        relationships.push_back( 19 );
+        relationships.push_back( 14 );
+        relationships.push_back(  4 );
         
         return dynamic_cast<graphics::app*>( new demo::Flipper( portraitSlides, landscapeSlides, slideLabels, relationships ) );
     }
