@@ -18,6 +18,7 @@
 #import "OpenGLView.hpp"
 #import "demo_flipper.hpp"
 #import "demo_droid.hpp"
+#import "demo_tweets.hpp"
 
 #import <OpenGLES/EAGL.h>
 #import <OpenGLES/ES1/gl.h>
@@ -49,7 +50,8 @@
 
 -(std::auto_ptr<graphics::app>)newGraphicsApp
 {
-    return std::auto_ptr<graphics::app>(demo::flipper_demo());
+    return std::auto_ptr<graphics::app>(demo::tweets_demo());
+//    return std::auto_ptr<graphics::app>(demo::flipper_demo());
     return std::auto_ptr<graphics::app>(demo::droid_demo());
 }
 

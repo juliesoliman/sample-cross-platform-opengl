@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13221237181ECC890057F89E /* skybox.fsh in Sources */ = {isa = PBXBuildFile; fileRef = 4F88740C17567940002BA712 /* skybox.fsh */; };
+		13221238181ECC8E0057F89E /* skybox.vsh in Sources */ = {isa = PBXBuildFile; fileRef = 4F88740D17567940002BA712 /* skybox.vsh */; };
+		13221239181ECCB90057F89E /* skybox.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4F88740C17567940002BA712 /* skybox.fsh */; };
+		1322123A181ECCB90057F89E /* skybox.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 4F88740D17567940002BA712 /* skybox.vsh */; };
+		1322123B181ECCD10057F89E /* curve.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4F88740817567940002BA712 /* curve.fsh */; };
+		1322123C181ECCD10057F89E /* curve.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 4F88740917567940002BA712 /* curve.vsh */; };
+		1322123D181ECE400057F89E /* icon.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4F88740A17567940002BA712 /* icon.fsh */; };
+		1322123E181ECE400057F89E /* icon.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 4F88740B17567940002BA712 /* icon.vsh */; };
+		13221242181ED77B0057F89E /* demo_tweets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 13221240181ED77B0057F89E /* demo_tweets.cpp */; };
+		13221243181ED8CB0057F89E /* sphere.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 4F88741217567940002BA712 /* sphere.fsh */; };
+		13221244181ED8CB0057F89E /* sphere.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 4F88741317567940002BA712 /* sphere.vsh */; };
+		13221246181ED9AB0057F89E /* tweet_sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 13221245181ED9AB0057F89E /* tweet_sphere.cpp */; };
 		4F0C8BE71709F7EF00A98EF4 /* 92-test-tube@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F0C89CF1709F7ED00A98EF4 /* 92-test-tube@2x.png */; };
 		4F0C8BE81709F7EF00A98EF4 /* cm-nx.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F0C89D01709F7ED00A98EF4 /* cm-nx.png */; };
 		4F0C8BE91709F7EF00A98EF4 /* cm-ny.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F0C89D11709F7ED00A98EF4 /* cm-ny.png */; };
@@ -377,6 +389,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1322123F181ED5410057F89E /* tweet_sphere.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tweet_sphere.hpp; sourceTree = "<group>"; };
+		13221240181ED77B0057F89E /* demo_tweets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = demo_tweets.cpp; sourceTree = "<group>"; };
+		13221241181ED77B0057F89E /* demo_tweets.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = demo_tweets.hpp; sourceTree = "<group>"; };
+		13221245181ED9AB0057F89E /* tweet_sphere.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tweet_sphere.cpp; sourceTree = "<group>"; };
 		4F0C89CF1709F7ED00A98EF4 /* 92-test-tube@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "92-test-tube@2x.png"; sourceTree = "<group>"; };
 		4F0C89D01709F7ED00A98EF4 /* cm-nx.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cm-nx.png"; sourceTree = "<group>"; };
 		4F0C89D11709F7ED00A98EF4 /* cm-ny.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cm-ny.png"; sourceTree = "<group>"; };
@@ -1197,6 +1213,8 @@
 		4F88740217567940002BA712 /* demos */ = {
 			isa = PBXGroup;
 			children = (
+				13221240181ED77B0057F89E /* demo_tweets.cpp */,
+				13221241181ED77B0057F89E /* demo_tweets.hpp */,
 				4F88740317567940002BA712 /* demo_droid.cpp */,
 				4F88740417567940002BA712 /* demo_droid.hpp */,
 				4F88740517567940002BA712 /* demo_flipper.cpp */,
@@ -1204,6 +1222,8 @@
 				4F88740717567940002BA712 /* Shaders */,
 				4F88741617567940002BA712 /* shared.cpp */,
 				4F88741717567940002BA712 /* shared.hpp */,
+				1322123F181ED5410057F89E /* tweet_sphere.hpp */,
+				13221245181ED9AB0057F89E /* tweet_sphere.cpp */,
 			);
 			path = demos;
 			sourceTree = "<group>";
@@ -1599,6 +1619,10 @@
 				4F0C8BE91709F7EF00A98EF4 /* cm-ny.png in Resources */,
 				4F0C8BEA1709F7EF00A98EF4 /* cm-nz.png in Resources */,
 				4F0C8BEB1709F7EF00A98EF4 /* cm-px.png in Resources */,
+				13221243181ED8CB0057F89E /* sphere.fsh in Resources */,
+				13221244181ED8CB0057F89E /* sphere.vsh in Resources */,
+				1322123D181ECE400057F89E /* icon.fsh in Resources */,
+				1322123E181ECE400057F89E /* icon.vsh in Resources */,
 				4F0C8BEC1709F7EF00A98EF4 /* cm-py.png in Resources */,
 				4F0C8BED1709F7EF00A98EF4 /* cm-pz.png in Resources */,
 				4F0C8BF21709F7EF00A98EF4 /* worldMapTerrain.png in Resources */,
@@ -1889,6 +1913,8 @@
 				4F88754117567941002BA712 /* bit.inl in Resources */,
 				4F88754217567941002BA712 /* closest_point.inl in Resources */,
 				4F88754317567941002BA712 /* color_cast.inl in Resources */,
+				13221239181ECCB90057F89E /* skybox.fsh in Resources */,
+				1322123A181ECCB90057F89E /* skybox.vsh in Resources */,
 				4F88754417567941002BA712 /* color_space.inl in Resources */,
 				4F88754517567941002BA712 /* color_space_YCoCg.inl in Resources */,
 				4F88754617567941002BA712 /* compatibility.inl in Resources */,
@@ -1900,6 +1926,8 @@
 				4F88754C17567941002BA712 /* fast_exponential.inl in Resources */,
 				4F88754D17567941002BA712 /* fast_square_root.inl in Resources */,
 				4F88754E17567941002BA712 /* fast_trigonometry.inl in Resources */,
+				1322123B181ECCD10057F89E /* curve.fsh in Resources */,
+				1322123C181ECCD10057F89E /* curve.vsh in Resources */,
 				4F88754F17567941002BA712 /* gradient_paint.inl in Resources */,
 				4F88755017567941002BA712 /* handed_coordinate_space.inl in Resources */,
 				4F88755117567941002BA712 /* inertia.inl in Resources */,
@@ -1965,6 +1993,10 @@
 				4F88758017567941002BA712 /* AppDelegate.mm in Sources */,
 				4F88758117567941002BA712 /* AppMain.m in Sources */,
 				4F88758217567941002BA712 /* MainViewController.mm in Sources */,
+				13221238181ECC8E0057F89E /* skybox.vsh in Sources */,
+				13221246181ED9AB0057F89E /* tweet_sphere.cpp in Sources */,
+				13221242181ED77B0057F89E /* demo_tweets.cpp in Sources */,
+				13221237181ECC890057F89E /* skybox.fsh in Sources */,
 				4F88758317567941002BA712 /* OpenGLView.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

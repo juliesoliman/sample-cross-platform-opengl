@@ -85,6 +85,8 @@ namespace graphics
         
     };
     
+    
+    
     class flat_sphere
     {
         std::auto_ptr<float> data_vertecies;
@@ -572,6 +574,9 @@ namespace graphics
         size_t numberOfVertecies(){ return this->size; }
         
     };
+    
+    
+    
     
     
     class slides

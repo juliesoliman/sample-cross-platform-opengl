@@ -25,13 +25,13 @@ varying vec4 color;
 
 void main()
 {
-    gl_PointSize = 1.0;
+    gl_PointSize = 4.0;
     
     gl_Position = projection * position;
  
     //gl_Position.y += 0.05 * ( sin( time*5.0 + position.x * 4.0 ) + sin( time*5.0 + position.y *8.0 ) );
     
-    texcoordVarying.s = texcoord.s - 0.02 * time;
+    texcoordVarying.s = texcoord.s;// - 0.02 * time;
     texcoordVarying.t = texcoord.t;
     
     color.r = 0.8 * sin( 0.25 * ( time + position.x * 4.0 ) + position.y * 5.0 );
